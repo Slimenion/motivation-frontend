@@ -32,7 +32,8 @@ export default {
       const passwordText = this.$el.querySelector('.password-text-field').value.trim();
 
       try {
-        const token = await postLogin({username: loginText, password: passwordText});
+        let token = await postLogin({username: loginText, password: passwordText});
+        token = token.token;
         Cookie.set('token', token);
         Cookie.set('login', loginText);
 

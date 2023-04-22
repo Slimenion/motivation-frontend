@@ -30,6 +30,11 @@
           Посмотреть у кого уже есть задания
         </div>
       </router-link>
+      <router-link :to="{ name: 'AddTopicPage'}">
+        <div class="but">
+          Добавить тему для задания
+        </div>
+      </router-link>
     </div>
   </div>
 </template>

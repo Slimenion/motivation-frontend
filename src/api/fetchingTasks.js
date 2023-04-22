@@ -10,6 +10,7 @@ async function fetchingTasks (login){
             task: el.task,
             subTask: el.sub_task,
             deadline: el.deadline,
+            topic_title: el.topic_title,
         }
     });
 }

@@ -9,6 +9,7 @@ import AddTaskPage from "@/page/AddTaskPage.vue";
 import StudentTasksPage from "@/page/StudentTasksPage.vue";
 import Cookie from 'js-cookie';
 import StudentsWithTasksPage from "@/page/StudentsWithTasksPage.vue";
+import AddTopicPage from "@/page/AddTopicPage.vue";
 
 const routes = [
     {
@@ -51,6 +52,11 @@ const routes = [
         path: '/show-students-with-tasks',
         name: 'ShowStudentsWithTasks',
         component: StudentsWithTasksPage,
+    },
+    {
+        path: '/add-topic',
+        name: 'AddTopicPage',
+        component: AddTopicPage,
     },
     {
         path: '/:pathMatch(.*)*',

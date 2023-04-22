@@ -13,6 +13,7 @@
         <div class="circle"></div>
         <div class="form-inner">
             <h4>{{ task.task }}</h4>
+            <h5 class="mt-4">Тема задания: {{task.topic_title}}</h5>
             <div class="mt-4" v-if="task.subTask && motivationProfile > 3">
                 <h5>Подзадачи:</h5>
                 <ul>
@@ -43,7 +44,6 @@ export default {
     async mounted() {
         this.tasks = await fetchingTasks(Cookie.get('login'));
         this.motivationProfile = await getMotivationProfileById(Cookie.get('login'));
-        console.log(this.motivationProfile);
     },
     methods: {
         splitSubtasks(subtaskString) {

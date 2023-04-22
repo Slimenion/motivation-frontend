@@ -6,8 +6,12 @@
         <div class="form-inner">
               <h5 v-if="isError" style="color: red">Произошла ошибка при отправке</h5>
               <h5 v-if="isSuccess" style="color: green">Задача успешно отправлена</h5>
-              <h3>Ввести задание</h3>
-              <input @click="resetAllErrorAndSuccess" ref="task" class="mt-4" type="text" placeholder="Полная формулировка задания"/>
+            <h4>Выберите тему задания</h4>
+                <select class="mt-4" ref="topic">
+                    <option v-for="topic in topics" :key="topic.id" :value="topic.id">{{topic.topic_title}}</option>
+                </select>
+            <h4>Введите задание</h4>
+            <input @click="resetAllErrorAndSuccess" ref="task" class="mt-4" type="text" placeholder="Полная формулировка задания"/>
               <input type="button" value="Добавить подзадачу" @click="addSubTasksInputs" />
               <div v-if='showSubTasksInputs' class="sub-tasks">
                   <h5>Подзадачи к заданию</h5>
@@ -28,6 +32,7 @@
 <script>
 import postTask from "@/api/postTask";
 import Cookie from "js-cookie";
+import getTopics from "@/api/getTopics";
 
 export default {
   name:'AddTaskPage',
@@ -36,9 +41,13 @@ export default {
             showSubTasksInputs: false,
             isError: false,
             isSuccess: false,
+            topics: [],
         }
     },
-  methods: {
+    async mounted() {
+        this.topics = await getTopics();
+    },
+    methods: {
     addSubTasksInputs() {
         const subTaskElem = document.createElement('div');
 
@@ -71,6 +80,7 @@ export default {
                 task: this.$refs.task.value,
                 subTask,
                 deadline: this.$refs.deadline.value,
+                id_topic_task: this.$refs.topic.value,
             });
 
             this.$refs.task.value = '';
